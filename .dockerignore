@@ -1,0 +1,10 @@
+**/bin
+**/obj
+.git
+.env*
+.local
+secrets
+artifacts
+**/TestResults
+**/*.db*
+**/*.log

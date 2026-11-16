@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../PHsystem.Core/PHsystem.Core.csproj" />
+    <PackageReference Include="System.Management" Version="10.0.15" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="10.0.15" />
+    <ProjectReference Include="../PHsystem.Optimizer/PHsystem.Optimizer.csproj" />
+  </ItemGroup>
+</Project>

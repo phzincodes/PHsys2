@@ -1,0 +1,28 @@
+<UserControl x:Class="PHsystem.Desktop.Views.CleanupView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="clr-namespace:PHsystem.Desktop">
+ <UserControl.Resources><local:ByteSizeConverter x:Key="BytesLabel"/><BooleanToVisibilityConverter x:Key="CleanupVisibility"/></UserControl.Resources>
+ <ScrollViewer VerticalScrollBarVisibility="Auto"><StackPanel Margin="0,0,8,16">
+  <Border Style="{DynamicResource Panel}"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+   <StackPanel><TextBlock Text="Temporários do usuário" Style="{DynamicResource SectionTitle}"/><TextBlock Text="{Binding CleanupStateLabel}" Foreground="{DynamicResource AccentBrush}" Margin="0,8,0,0" AutomationProperties.LiveSetting="Polite"/><TextBlock Text="{Binding CleanupSize}" FontSize="30" FontWeight="SemiBold" LineHeight="40" Margin="0,14,0,0"/><TextBlock Text="{Binding CleanupCount}" Style="{DynamicResource Caption}"/></StackPanel>
+   <Button Grid.Column="1" Content="Analisar temporários" Command="{Binding PreviewCleanupCommand}" Style="{DynamicResource PrimaryButton}" VerticalAlignment="Top" Margin="16,0,0,0"/>
+  </Grid></Border>
+  <Border Style="{DynamicResource Notice}" Margin="0,14,0,0" Visibility="{Binding ShowCleanupEmpty, Converter={StaticResource CleanupVisibility}}"><TextBlock Text="{Binding CleanupEmptyMessage}" AutomationProperties.AutomationId="CleanupEmptyMessage"/></Border>
+  <Border Style="{DynamicResource Panel}" Margin="0,14,0,0"><StackPanel>
+   <TextBlock Text="O que esta análise cobre" Style="{DynamicResource SectionTitle}"/>
+   <TextBlock Text="Uma pasta temporária, apenas no primeiro nível. Arquivos precisam ter mais de 7 dias. Subpastas, documentos, downloads, navegadores, nuvem e pastas do Windows não são examinados por esta regra." Style="{DynamicResource Caption}" Margin="0,10,0,12"/>
+   <ItemsControl ItemsSource="{Binding CleanupAnalysisLines}"><ItemsControl.ItemTemplate><DataTemplate><Grid Margin="0,4"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions><TextBlock Text="{Binding Name}" Foreground="{DynamicResource SecondaryBrush}"/><TextBlock Grid.Column="1" Text="{Binding Value}"/></Grid></DataTemplate></ItemsControl.ItemTemplate></ItemsControl>
+   <Expander Header="Pasta analisada e limites"><StackPanel Margin="0,10,0,0"><TextBlock Text="{Binding CleanupRoot}"/><TextBlock Text="Limite de 10.000 entradas, sem recursão. Cada arquivo ignorado recebe um único motivo principal. A análise é só leitura. O caminho é privado deste computador." Style="{DynamicResource Caption}" Margin="0,8,0,0"/></StackPanel></Expander>
+  </StackPanel></Border>
+  <StackPanel Visibility="{Binding CanReviewCleanup, Converter={StaticResource CleanupVisibility}}" Margin="0,18,0,0">
+   <TextBlock Text="Revisar seleção" Style="{DynamicResource SectionTitle}" Margin="0,0,0,10"/>
+   <DataGrid ItemsSource="{Binding CleanupFiles}" MaxHeight="320" AutomationProperties.Name="Arquivos elegíveis para revisão"><DataGrid.Columns>
+    <DataGridTemplateColumn Header="Selecionar" Width="90"><DataGridTemplateColumn.CellTemplate><DataTemplate><CheckBox IsChecked="{Binding Selected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" AutomationProperties.Name="Selecionar arquivo"/></DataTemplate></DataGridTemplateColumn.CellTemplate></DataGridTemplateColumn>
+    <DataGridTextColumn Header="Arquivo" Binding="{Binding Name}" Width="*"/><DataGridTextColumn Header="Tamanho nominal" Binding="{Binding Bytes, Converter={StaticResource BytesLabel}}" Width="140"/><DataGridTextColumn Header="Alteração UTC" Binding="{Binding LastWriteUtc, StringFormat=dd/MM/yyyy HH:mm}" Width="160"/>
+   </DataGrid.Columns></DataGrid>
+   <TextBlock Text="{Binding CleanupSelectionLabel}" Style="{DynamicResource Caption}" Margin="0,12,0,12"/>
+   <Border Style="{DynamicResource Notice}" BorderBrush="{DynamicResource WarningBrush}"><StackPanel><TextBlock Text="Exclusão permanente" FontWeight="SemiBold" Foreground="{DynamicResource WarningBrush}"/><TextBlock Text="Esta regra não possui quarentena nem recuperação. Não passa pela lixeira. Só prossiga após revisar a seleção; a prévia expira em dez minutos e arquivos alterados, em uso ou inseguros serão preservados." Style="{DynamicResource Caption}" Margin="0,8,0,12"/><CheckBox IsChecked="{Binding CleanupConsent}" Content="Revisei e autorizo a exclusão permanente dos arquivos selecionados."/><Button Content="Excluir seleção permanentemente" Command="{Binding CleanupCommand}" Style="{DynamicResource DangerButton}" HorizontalAlignment="Left" Margin="0,12,0,0"/></StackPanel></Border>
+  </StackPanel>
+  <StackPanel Visibility="{Binding HasCleanupResults, Converter={StaticResource CleanupVisibility}}" Margin="0,18,0,0"><TextBlock Text="Resultado por arquivo" Style="{DynamicResource SectionTitle}"/><DataGrid ItemsSource="{Binding CleanupResults}" MaxHeight="260" Margin="0,12,0,0"><DataGrid.Columns><DataGridTextColumn Header="Arquivo" Binding="{Binding Name}" Width="*"/><DataGridTextColumn Header="Resultado verificado" Binding="{Binding Explanation}" Width="2*"/></DataGrid.Columns></DataGrid></StackPanel>
+  <TextBlock Text="{Binding CleanupStatus}" Style="{DynamicResource Caption}" Margin="0,18,0,0" AutomationProperties.AutomationId="CleanupStatus" AutomationProperties.LiveSetting="Polite"/>
+  <Button Content="Cancelar operação atual" Command="{Binding CancelCommand}" HorizontalAlignment="Left" Margin="0,12,0,0" Visibility="{Binding IsBusy, Converter={StaticResource CleanupVisibility}}"/>
+ </StackPanel></ScrollViewer>
+</UserControl>

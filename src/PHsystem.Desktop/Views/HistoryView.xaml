@@ -1,0 +1,49 @@
+<UserControl x:Class="PHsystem.Desktop.Views.HistoryView" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+    <DockPanel Margin="0,0,0,18">
+      <Button Content="Exportar análise atual" Command="{Binding ExportCommand}" DockPanel.Dock="Right" />
+      <StackPanel>
+        <TextBlock Text="{Binding HistoryCountLabel}" Style="{DynamicResource SectionTitle}" />
+        <TextBlock Text="Últimas 20 análises · retenção máxima de 100 registros locais" Style="{DynamicResource Caption}" Margin="0,4,0,0" />
+      </StackPanel>
+    </DockPanel>
+    <Border Grid.Row="1" Style="{DynamicResource Panel}" Padding="0">
+      <Grid>
+        <DataGrid ItemsSource="{Binding History}">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="Data da análise" Binding="{Binding CapturedAt}" Width="1.2*" />
+            <DataGridTextColumn Header="Cobertura da coleta" Binding="{Binding Coverage}" Width="2*" />
+            <DataGridTextColumn Header="Referência" Binding="{Binding ShortId}" Width="1*" />
+          </DataGrid.Columns>
+        </DataGrid>
+        <TextBlock Text="Seu histórico aparecerá aqui após a primeira análise." VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="{DynamicResource SecondaryBrush}" FontSize="12">
+          <TextBlock.Style>
+            <Style TargetType="TextBlock">
+              <Setter Property="TextWrapping" Value="Wrap" />
+              <Setter Property="Visibility" Value="Collapsed" />
+              <Style.Triggers>
+                <DataTrigger Binding="{Binding History.Count}" Value="0">
+                  <Setter Property="Visibility" Value="Visible" />
+                </DataTrigger>
+              </Style.Triggers>
+            </Style>
+          </TextBlock.Style>
+        </TextBlock>
+      </Grid>
+    </Border>
+    <StackPanel Grid.Row="2">
+     <Expander Header="Comparar análises"><StackPanel Margin="0,12,0,0"><Grid><Grid.ColumnDefinitions><ColumnDefinition/><ColumnDefinition/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions><ComboBox ItemsSource="{Binding History}" SelectedItem="{Binding CompareBefore}" DisplayMemberPath="CapturedAt" Margin="0,0,10,0" AutomationProperties.Name="Análise anterior"/><ComboBox Grid.Column="1" ItemsSource="{Binding History}" SelectedItem="{Binding CompareAfter}" DisplayMemberPath="CapturedAt" Margin="0,0,10,0" AutomationProperties.Name="Análise posterior"/><Button Grid.Column="2" Content="Comparar" Command="{Binding CompareHistoryCommand}"/></Grid><TextBlock Text="{Binding ComparisonStatus}" Style="{DynamicResource Caption}" Margin="0,10,0,8"/><DataGrid ItemsSource="{Binding HistoryDifferences}" MaxHeight="220"><DataGrid.Columns><DataGridTextColumn Header="Categoria" Binding="{Binding Category}" Width="*"/><DataGridTextColumn Header="Campo" Binding="{Binding Field}" Width="*"/><DataGridTextColumn Header="Antes" Binding="{Binding Before}" Width="*"/><DataGridTextColumn Header="Depois" Binding="{Binding After}" Width="*"/></DataGrid.Columns></DataGrid></StackPanel></Expander>
+    <Expander Header="Armazenamento e exclusão do histórico">
+      <StackPanel Margin="20,10,0,0">
+        <TextBlock Text="Dados salvos no perfil local do Windows. O banco não tem criptografia própria. Apagar o histórico não remove arquivos que você já exportou." Style="{DynamicResource Caption}" />
+        <Button Content="Apagar todo o histórico local" Command="{Binding DeleteHistoryCommand}" Style="{DynamicResource DangerButton}" HorizontalAlignment="Left" Margin="0,12,0,0" />
+      </StackPanel>
+    </Expander>
+    </StackPanel>
+  </Grid>
+</UserControl>

@@ -1,0 +1,25 @@
+<Solution>
+  <Project Path="src/PHsystem.Core/PHsystem.Core.csproj" />
+  <Project Path="src/PHsystem.Windows/PHsystem.Windows.csproj" />
+  <Project Path="src/PHsystem.Diagnostics/PHsystem.Diagnostics.csproj" />
+  <Project Path="src/PHsystem.Cleanup/PHsystem.Cleanup.csproj" />
+  <Project Path="src/PHsystem.Drivers/PHsystem.Drivers.csproj" />
+  <Project Path="src/PHsystem.Optimizer/PHsystem.Optimizer.csproj" />
+  <Project Path="src/PHsystem.LocalData/PHsystem.LocalData.csproj" />
+  <Project Path="src/PHsystem.PrivilegedHelper/PHsystem.PrivilegedHelper.csproj" />
+  <Project Path="src/PHsystem.SharedContracts/PHsystem.SharedContracts.csproj" />
+  <Project Path="src/PHsystem.Server/PHsystem.Server.csproj" />
+  <Project Path="src/PHsystem.Community/PHsystem.Community.csproj" />
+  <Folder Name="/src/" />
+  <Folder Name="/tools/">
+    <Project Path="tools/ProvisionAdmin/ProvisionAdmin.csproj" />
+  </Folder>
+  <Project Path="src/PHsystem.Admin/PHsystem.Admin.csproj" />
+  <Project Path="src/PHsystem.Desktop/PHsystem.Desktop.csproj" />
+  <Project Path="tests/PHsystem.UnitTests/PHsystem.UnitTests.csproj" />
+  <Project Path="tests/PHsystem.IntegrationTests/PHsystem.IntegrationTests.csproj" />
+  <Project Path="tests/PHsystem.WindowsTests/PHsystem.WindowsTests.csproj" />
+  <Project Path="tests/PHsystem.SecurityTests/PHsystem.SecurityTests.csproj" />
+  <Project Path="tests/PHsystem.UiTests/PHsystem.UiTests.csproj" />
+  <Project Path="tests/PHsystem.E2ETests/PHsystem.E2ETests.csproj" />
+</Solution>

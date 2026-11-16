@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PHsystem Desenvolvimento (serviços automáticos)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "development-services",
+      "program": "${workspaceFolder}/src/PHsystem.Desktop/bin/Debug/net10.0-windows/PHsystem.Desktop.dll",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "PHsystem Desktop",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "build",
+      "program": "${workspaceFolder}/src/PHsystem.Desktop/bin/Debug/net10.0-windows/PHsystem.Desktop.dll",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

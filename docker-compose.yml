@@ -1,0 +1,66 @@
+name: phsystem-next-dev
+services:
+  postgres:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: phsystem_dev
+      POSTGRES_USER: phsystem_dev
+      POSTGRES_PASSWORD: ${PHSYSTEM_DEV_DB_PASSWORD:?Defina uma senha local nova no arquivo .env ignorado pelo Git}
+    ports: ["127.0.0.1::5432"]
+    volumes: ["postgres-data:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U phsystem_dev -d phsystem_dev"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  mailpit:
+    image: axllent/mailpit:v1.27
+    ports: ["127.0.0.1::8025", "127.0.0.1::1025"]
+  api:
+    build: {context: ., dockerfile: src/PHsystem.Server/Dockerfile}
+    environment: &api-environment
+      ASPNETCORE_ENVIRONMENT: Development
+      Email__PublicBaseUrl: https://localhost:${PHSYSTEM_DEV_WEB_PORT:-5178}/
+      ASPNETCORE_URLS: https://+:8443
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/dev.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${PHSYSTEM_DEV_CERT_PASSWORD:?Configure um certificado HTTPS local}
+      ConnectionStrings__Community: Host=postgres;Database=phsystem_dev;Username=phsystem_dev;Password=${PHSYSTEM_DEV_DB_PASSWORD}
+      Email__Host: mailpit
+      Email__Port: 1025
+      Email__EnableSsl: false
+      Email__From: phsystem@example.invalid
+      Authentication__Google__ClientId: ${PHSYSTEM_GOOGLE_CLIENT_ID:-}
+      Authentication__Google__ClientSecret: ${PHSYSTEM_GOOGLE_CLIENT_SECRET:-}
+      Authentication__Google__EnableNativeBroker: ${PHSYSTEM_GOOGLE_NATIVE_ENABLED:-false}
+      Security__CompromisedPasswordHashes: /security/compromised-sha256.txt
+      Distribution__Directory: /downloads
+    volumes: &api-volumes
+      - ${PHSYSTEM_DEV_CERT_DIRECTORY:?Diretório local com dev.pfx}:/https:ro
+      - ${PHSYSTEM_PASSWORD_LIST_DIRECTORY:?Diretório com lista revisada de hashes de senhas comprometidas}:/security:ro
+      - api-keys:/home/app/.aspnet/DataProtection-Keys
+      - ./artifacts/releases:/downloads:ro
+    ports: ["127.0.0.1::8443", "127.0.0.1:${PHSYSTEM_DEV_WEB_PORT:-5178}:8443"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  migrate:
+    profiles: ["migrations"]
+    build: {context: ., dockerfile: src/PHsystem.Server/Dockerfile}
+    environment: *api-environment
+    volumes: *api-volumes
+    command: ["--migrate"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  admin:
+    profiles: ["administration"]
+    build: {context: ., dockerfile: src/PHsystem.Admin/Dockerfile}
+    environment:
+      ASPNETCORE_URLS: https://+:8443
+      ASPNETCORE_Kestrel__Certificates__Default__Path: /https/dev.pfx
+      ASPNETCORE_Kestrel__Certificates__Default__Password: ${PHSYSTEM_DEV_CERT_PASSWORD}
+      Backend__BaseUrl: ${PHSYSTEM_ADMIN_BACKEND_HTTPS_URL:-}
+    volumes:
+      - ${PHSYSTEM_DEV_CERT_DIRECTORY}:/https:ro
+    ports: ["127.0.0.1:7044:8443"]
+volumes:
+  postgres-data:
+  api-keys:

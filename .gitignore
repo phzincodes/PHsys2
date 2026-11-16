@@ -1,0 +1,14 @@
+bin/
+obj/
+.vs/
+.env
+.env.*
+!.env.example
+*.db*
+*.log
+*.dmp
+artifacts/
+secrets/
+.local/
+__pycache__/
+TestResults/

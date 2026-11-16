@@ -1,0 +1,11 @@
+name: Proposta de funcionalidade
+description: Descreva a necessidade, riscos e como verificar a entrega.
+body:
+  - type: textarea
+    id: problem
+    attributes: {label: Problema do usuário}
+    validations: {required: true}
+  - type: textarea
+    id: acceptance
+    attributes: {label: Critérios verificáveis de aceitação}
+    validations: {required: true}

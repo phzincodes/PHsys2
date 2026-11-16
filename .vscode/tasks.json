@@ -1,0 +1,85 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "development-services",
+      "type": "process",
+      "command": "pwsh",
+      "args": [
+        "-NoProfile",
+        "-File",
+        "${workspaceFolder}/tools/StartDevelopment.ps1",
+        "-Dotnet",
+        "D:/PHsystemTools/dotnet/dotnet.exe",
+        "-NoDesktop"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "restore",
+      "type": "process",
+      "command": "D:\\PHsystemTools\\dotnet\\dotnet.exe",
+      "args": [
+        "restore",
+        "PHsystem.slnx"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "build",
+      "type": "process",
+      "command": "D:\\PHsystemTools\\dotnet\\dotnet.exe",
+      "args": [
+        "build",
+        "PHsystem.slnx"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "test",
+      "type": "process",
+      "command": "D:\\PHsystemTools\\dotnet\\dotnet.exe",
+      "args": [
+        "test",
+        "PHsystem.slnx"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "desktop",
+      "type": "process",
+      "command": "D:\\PHsystemTools\\dotnet\\dotnet.exe",
+      "args": [
+        "run",
+        "--project",
+        "src/PHsystem.Desktop"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "publish",
+      "type": "process",
+      "command": "D:\\PHsystemTools\\dotnet\\dotnet.exe",
+      "args": [
+        "publish",
+        "src/PHsystem.Desktop",
+        "-c",
+        "Release",
+        "-r",
+        "win-x64",
+        "--self-contained",
+        "true",
+        "-o",
+        "artifacts/desktop"
+      ],
+      "problemMatcher": "$msCompile"
+    }
+  ],
+  "options": {
+    "env": {
+      "DOTNET_ROOT": "D:\\PHsystemTools\\dotnet",
+      "NUGET_PACKAGES": "D:\\PHsystemTools\\nuget",
+      "DOTNET_CLI_TELEMETRY_OPTOUT": "1"
+    }
+  }
+}

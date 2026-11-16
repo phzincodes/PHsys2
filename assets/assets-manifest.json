@@ -1,0 +1,239 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "path": "branding/logo-horizontal.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "branding/logo-symbol.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "branding/app-icon.png",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "backgrounds/login-cover.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "backgrounds/dashboard-decoration.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "backgrounds/community-header.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/scan-empty.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/scan-complete.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/cleanup-empty.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/driver-warning.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/optimizer-guide.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "illustrations/offline.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/cpu.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/gpu.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/ram.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/disk.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/network.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/shield.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/driver.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "icons/repair.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "community/categories/hardware.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "community/categories/windows.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "community/categories/games.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "community/categories/drivers.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "community/categories/network.webp",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "avatars/default-avatar.png",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "badges/verified-expert.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "badges/moderator.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "badges/administrator.svg",
+      "required": false,
+      "fallback": "texto ou geometria neutra",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/click.wav",
+      "required": false,
+      "fallback": "silêncio",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/success.wav",
+      "required": false,
+      "fallback": "silêncio",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/warning.wav",
+      "required": false,
+      "fallback": "silêncio",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/confirm.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/error.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/navigation.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/notification.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/panel.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/reply.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    },
+    {
+      "path": "sounds/scan-start.wav",
+      "required": false,
+      "fallback": "silêncio; ação visual preservada",
+      "maxBytes": 4194304
+    }
+  ]
+}
